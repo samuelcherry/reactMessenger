@@ -49,7 +49,7 @@ useEffect(() => {
     <>
 		<div className="flex flex-row h-200 m-5">
 			<ChatGroups/>
-				<MessageContext.Provider value={messages}>
+				<MessageContext.Provider value={{messages, setMessages}}>
 					<ChatDisplay/>
 				</MessageContext.Provider>
 			<ChatDetails/>
