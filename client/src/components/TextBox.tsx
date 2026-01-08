@@ -1,20 +1,34 @@
 import {useState, useContext} from 'react';
 import {MessageContext} from '../utils/MessageContext'
 import type {Message} from '../utils/MessageContext'
+import {useMessageContext} from '../utils/MessageContext'
 
 function TextBox () {
 
 const [inputValue, setInputValue] = useState('');
-const messages = useContext(MessageContext);
+const { setMessages } = useMessageContext();
 
-	const handleChange = (event) => {
+	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setInputValue(event.target.value)
 	}
 
 	function sendMessage(e){
+
 		e.preventDefault();
-		const textContent = inputValue;
-		messages.messages.push({id:4, user:"test", content:textContent});
+	
+		if (!inputValue.trim()) return;
+
+		setMessages(prev => [
+
+			...prev,
+			{
+				id: Date.now(),
+				user: "test",
+				content: inputValue
+			}
+		]);
+
+		setInputValue("");
 	}
 
 	return(
