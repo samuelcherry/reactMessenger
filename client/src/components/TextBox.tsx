@@ -7,6 +7,9 @@ function TextBox () {
 
 const [inputValue, setInputValue] = useState('');
 const { setMessages } = useMessageContext();
+const { username, setUsername } = useMessageContext();
+
+console.log("textbox log: ", username)
 
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setInputValue(event.target.value)
@@ -23,7 +26,7 @@ const { setMessages } = useMessageContext();
 			...prev,
 			{
 				id: Date.now(),
-				user: "test",
+				user: username,
 				content: inputValue
 			}
 		]);

@@ -12,17 +12,18 @@ import UserPopup from './components/UserPopup'
 function App() {
   const [connected, setConnected] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
-  const [username, setUsername] = useState<String | null>(null)
+  const [username, setUsername] = useState<String | undefined>('')
 
 
   return (
     <>
 	
-		{!username && <UserPopup onSubmit={setUsername}/>}
 	
 		<div className="flex flex-row h-200 m-5">
 			<ChatGroups/>
-				<MessageContext.Provider value={{messages, setMessages}}>
+				<MessageContext.Provider value={{messages, setMessages, username, setUsername}}>
+					{!username && <UserPopup onSubmit={setUsername}/>}
+
 					<ChatDisplay/>
 				</MessageContext.Provider>
 			<ChatDetails/>
