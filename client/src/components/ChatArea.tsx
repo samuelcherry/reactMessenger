@@ -1,13 +1,11 @@
 
-import {useState, useEffect,useRef, useContext} from 'react';
+import {useEffect,useRef} from 'react';
 import {useMessageContext} from '../utils/MessageContext'
 
 function ChatArea() {
 
 	const bottomRef = useRef<HTMLDivElement | null>(null);
-	const {messages, setMessages} = useMessageContext();
-	const {username, setUsername} = useMessageContext();
-
+	const {messages} = useMessageContext();
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ behavior: "smooth"});

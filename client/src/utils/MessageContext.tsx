@@ -1,5 +1,5 @@
-import {useContext, createContext, Dispatch, SetStateAction} from 'react';
-
+import {useContext, createContext} from 'react';
+import type {Dispatch, SetStateAction} from 'react';
 export interface Message {
 	id: number;
 	user: string;
@@ -14,8 +14,8 @@ export interface User {
 interface MessageContextType {
 	messages: Message[];
 	setMessages: Dispatch<SetStateAction<Message[]>>;
-	username: User;
-	setUsername: Dispatch<SetStateAction<User>>;
+	username: string | null;
+	setUsername: Dispatch<SetStateAction<string | null>>;
 }
 
 
@@ -27,7 +27,8 @@ export function useMessageContext () {
 	const context = useContext(MessageContext);
 
 	if (!context){
-		console.log("messages is undefined");
+		throw new Error("useMessageContext must be used within a MessageProvider"
+    );
 	}
 
 	return context;

@@ -1,11 +1,13 @@
 const { Server } = require("socket.io");
 const http = require("http");
-
+const dotenv = require("dotenv");
 const server = http.createServer();
+
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 const io = new Server(server, { 
 		cors:{
-			origin: "*",
+			origin: FRONTEND_URL,
 			methods: ["GET", "POST"],
 		},
         });
@@ -23,6 +25,9 @@ io.on("connection", (socket) => {
 	});
 });
 
-server.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+
+
+server.listen(PORT, () => {
 	console.log("Socket.IO server running on port 3000");
 });

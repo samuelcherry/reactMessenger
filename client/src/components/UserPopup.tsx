@@ -16,7 +16,7 @@ function UserPopup({onSubmit} : UserPopupProps) {
 		onSubmit(name.trim());
 	}
 
-	const {username, setUsername} = useMessageContext();
+	const { username } = useMessageContext();
 	console.log("popup: ", username);
 	
 	return (

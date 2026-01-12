@@ -1,15 +1,14 @@
-import {useState, useContext, useEffect} from 'react';
-import {MessageContext} from '../utils/MessageContext'
-import type {Message} from '../utils/MessageContext'
+import {useState,useEffect} from 'react';
 import {useMessageContext} from '../utils/MessageContext'
+import type {Message} from '../utils/MessageContext'
 import {socket} from '../socket'
 
 
 function TextBox () {
 
 const [inputValue, setInputValue] = useState('');
-const {messages, setMessages } = useMessageContext();
-const { username, setUsername } = useMessageContext();
+const { setMessages } = useMessageContext();
+const { username } = useMessageContext();
 
 console.log("textbox log: ", username)
 
@@ -18,7 +17,7 @@ console.log("textbox log: ", username)
 	}
 
 	useEffect(() => {
-		socket.on("received_message", (data) => {
+		socket.on("received_message", (data : Message) => {
 			setMessages(prev => [
 				...prev,
 				{
@@ -34,7 +33,8 @@ console.log("textbox log: ", username)
 		};
 	}, [socket,username]);
 
-	function sendMessage(e){
+	function sendMessage(e: React.FormEvent<HTMLFormElement>){
+
 		e.preventDefault();
 
 		if(!inputValue.trim()) return;
