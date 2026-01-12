@@ -2,7 +2,7 @@ const { Server } = require("socket.io");
 const http = require("http");
 const dotenv = require("dotenv");
 
-dotenv.config();:
+dotenv.config();
 
 const server = http.createServer();
 const FRONTEND_URL = process.env.FRONTEND_URL;
