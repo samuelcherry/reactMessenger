@@ -1,12 +1,14 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {MessageContext} from '../utils/MessageContext'
 import type {Message} from '../utils/MessageContext'
 import {useMessageContext} from '../utils/MessageContext'
+import {socket} from '../socket'
+
 
 function TextBox () {
 
 const [inputValue, setInputValue] = useState('');
-const { setMessages } = useMessageContext();
+const {messages, setMessages } = useMessageContext();
 const { username, setUsername } = useMessageContext();
 
 console.log("textbox log: ", username)
@@ -15,22 +17,33 @@ console.log("textbox log: ", username)
 		setInputValue(event.target.value)
 	}
 
+	useEffect(() => {
+		socket.on("received_message", (data) => {
+			setMessages(prev => [
+				...prev,
+				{
+					id: data.id,
+					user: data.user,
+					content: data.content
+				}
+			]);
+		});
+		
+		return () => {
+		socket.off("received_message");
+		};
+	}, [socket,username]);
+
 	function sendMessage(e){
-
 		e.preventDefault();
-	
-		if (!inputValue.trim()) return;
 
-		setMessages(prev => [
+		if(!inputValue.trim()) return;
 
-			...prev,
-			{
-				id: Date.now(),
-				user: username,
-				content: inputValue
-			}
-		]);
-
+		socket.emit("send_message",{
+			id: Date.now(),
+			user: username,
+			content: inputValue.trim(),
+		});
 		setInputValue("");
 	}
 

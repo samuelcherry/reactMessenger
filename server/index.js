@@ -5,13 +5,18 @@ const server = http.createServer();
 
 const io = new Server(server, { 
 		cors:{
-			origin: "http://localhose:5173",	
+			origin: "*",
+			methods: ["GET", "POST"],
 		},
         });
 
 io.on("connection", (socket) => {
 	console.log("Client connected:", socket.id);
-	
+
+	socket.on("send_message", (data) => {
+		io.emit("received_message", data)
+	});
+
 	socket.on("disconnect", () => {
 
 		console.log("Client disconnected:", socket.id);

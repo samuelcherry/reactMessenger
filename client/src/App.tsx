@@ -7,12 +7,26 @@ import type {Message} from './utils/MessageContext'
 import {MessageContext} from './utils/MessageContext'
 import {dummyData} from './data/dummyData'
 import UserPopup from './components/UserPopup'
-
+import { io} from "socket.io-client";
+import {socket} from "./socket";
 
 function App() {
   const [connected, setConnected] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [username, setUsername] = useState<String | undefined>('')
+
+    useEffect(() => {
+		socket.connect();
+
+		socket.on("connect", () => {
+			console.log("Connected:",socket.id);
+		})
+		
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
+
 
 
   return (

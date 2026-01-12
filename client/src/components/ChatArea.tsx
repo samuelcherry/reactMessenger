@@ -2,18 +2,18 @@
 import {useState, useEffect,useRef, useContext} from 'react';
 import {useMessageContext} from '../utils/MessageContext'
 
-
 function ChatArea() {
 
 	const bottomRef = useRef<HTMLDivElement | null>(null);
 	const {messages, setMessages} = useMessageContext();
 	const {username, setUsername} = useMessageContext();
-	
+
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ behavior: "smooth"});
 	}, [messages]);
-
+	
+	console.log("message shape: ", messages);
 
 return (
 		<>
