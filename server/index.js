@@ -8,10 +8,9 @@ dotenv.config();
 const app = express();
 
 const server = http.createServer(app);
-const FRONTEND_URL = process.env.FRONTEND_URL;
 const io = new Server(server, { 
 		cors:{
-			origin: FRONTEND_URL,
+			origin: process.emv.FRONTEND_URL,
 			methods: ["GET", "POST"],
 		},
         });
