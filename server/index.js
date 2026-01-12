@@ -1,4 +1,3 @@
-const express from "express";
 const { Server } = require("socket.io");
 const http = require("http");
 const dotenv = require("dotenv");
