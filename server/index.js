@@ -1,10 +1,13 @@
 const { Server } = require("socket.io");
 const http = require("http");
 const dotenv = require("dotenv");
+const express = require("express");
 
 dotenv.config();
 
-const server = http.createServer();
+const app = express();
+
+const server = http.createServer(app);
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const io = new Server(server, { 
 		cors:{
