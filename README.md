@@ -8,7 +8,6 @@ A real-time chat application built with **React**, **Socket.IO**, and **Node.js*
 
 * Real-time messaging using **Socket.IO**
 * React frontend with hooks (`useState`, `useEffect`, `useContext`)
-* Connect / disconnect websocket controls
 * Centralized message state
 * CORS-safe client/server communication
 * Deployed frontend and backend
@@ -45,7 +44,8 @@ root
 │   ├── src
 │   │   ├── components
 │   │   ├── context
-│   │   ├── data
+│   │   ├── dummyData
+│   │   ├── utils
 │   │   └── App.tsx
 │   └── package.json
 ├── server
@@ -58,11 +58,9 @@ root
 
 ## Socket.IO Flow
 
-1. User clicks **Connect**
-2. Client opens a websocket connection to the backend
-3. Backend logs the connection and assigns a socket ID
-4. Messages are emitted from client → server → all connected clients
-5. User can manually **Disconnect**, closing the socket cleanly
+1. Client opens a websocket connection to the backend
+2. Backend logs the connection and assigns a socket ID
+3. Messages are emitted from client → server → all connected clients
 
 ---
 
@@ -153,7 +151,6 @@ This can happen if initial messages are added inside `useEffect` without proper 
 ## Future Improvements
 
 * User authentication / usernames
-* Typing indicators
 * Message persistence (database)
 * Private rooms
 * Improved UI/UX animations
@@ -168,7 +165,7 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-**Samuel Cherry**
+**Sam Cherry**
 
 Feel free to reach out or explore the code to see how real-time communication is implemented with Socket.IO.
 
