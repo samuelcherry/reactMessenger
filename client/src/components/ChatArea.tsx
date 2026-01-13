@@ -15,10 +15,10 @@ function ChatArea() {
 
 return (
 		<>
-			<div className="bg-gray-100 h-9/10 outline-solid outline-2 outline-gray-400 rounded-t-lg overflow-y-auto">
+			<div className="bg-gray-100 h-full outline-solid outline-2 outline-gray-400 overflow-y-auto">
 				{messages.map( message => (
 					<div key={message.id} className="flex justify-end">
-						<h1 className= "p-6 rounded-xl bg-blue-400 m-3 w-1/2 color-white">
+						<h1 className= "p-6 rounded-xl bg-blue-400 m-3 w-full color-white">
 							{message.user}
 							<hr/>
 							{message.content}

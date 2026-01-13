@@ -1,7 +1,7 @@
 function ChatDetails() {
 	return(
 		<>
-			<div className="w-1/3 h-full bg-blue-950 p-4 rounded-r-xl">
+			<div className="w-1/12 h-screen bg-blue-950 p-4 lg:w-1/8">
 			</div>
 		</>
 	)

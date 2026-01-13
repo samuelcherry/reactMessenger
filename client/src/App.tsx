@@ -30,7 +30,7 @@ function App() {
     <>
 	
 	
-		<div className="flex flex-row h-200 m-5">
+		<div className="flex flex-row h-screen">
 			<ChatGroups/>
 				<MessageContext.Provider value={{messages, setMessages, username, setUsername}}>
 					{!username && <UserPopup onSubmit={setUsername} />}
